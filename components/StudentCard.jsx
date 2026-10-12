@@ -10,6 +10,7 @@ const studentPhotos = {
   6: "/students/student-6.jpg",
   7: "/students/student-7.jpg",
   8: "/students/student-8.jpg",
+  9: "/students/student-9.jpeg",
 };
 
 export default function StudentCard({ student }) {

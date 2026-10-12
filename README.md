@@ -45,4 +45,4 @@ A student directory built with Next.js, React, Tailwind CSS, and MySQL. The app 
 
 The `students` table is expected to include `id`, `first_name`, `last_name`, `email`, `phone`, `street_address`, `city`, `province_state`, `country`, `postal_code`, `program`, `year`, and `created_at`.
 
-Each of the eight sample students has a profile photo in `public/students`, rendered with Next.js `Image`. Students without a mapped photo display their initials.
+Each of the nine sample students has a profile photo in `public/students`, rendered with Next.js `Image`. Students without a mapped photo display their initials.
