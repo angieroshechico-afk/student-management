@@ -17,15 +17,7 @@ A student directory built with Next.js, React, Tailwind CSS, and MySQL. The app 
    npm install
    ```
 
-3. Copy `.env.local.example` to `.env.local` and set your local MySQL credentials. Add your OpenWeather API key if you want the weather widget:
-
-   ```env
-   DB_HOST=localhost
-   DB_USER=root
-   DB_PASSWORD=your-local-mysql-password
-   DB_NAME=oosd_webappdev
-   NEXT_PUBLIC_WEATHER_API_KEY=your-openweathermap-api-key
-   ```
+3. Copy `.env.local.example` to `.env.local` and enter your local MySQL credentials. Add your OpenWeather API key if you want the weather widget.
 
    Keep `.env.local` private; it is excluded from Git.
 
@@ -47,8 +39,10 @@ A student directory built with Next.js, React, Tailwind CSS, and MySQL. The app 
 
 ## Features
 
-- Student directory cards with student initials and contact/address details
+- Responsive student directory cards with initials, optional local photos, and contact/address details
 - Student registration form backed by a MySQL server action
 - Optional city weather lookup using OpenWeather
 
 The `students` table is expected to include `id`, `first_name`, `last_name`, `email`, `phone`, `street_address`, `city`, `province_state`, `country`, `postal_code`, `program`, `year`, and `created_at`.
+
+Each of the eight sample students has a profile photo in `public/students`, rendered with Next.js `Image`. Students without a mapped photo display their initials.

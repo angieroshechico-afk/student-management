@@ -81,18 +81,23 @@ export default function RegisterPage() {
   }, [city]);
 
   return (
-    <main className="min-h-screen bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-2xl rounded-2xl border border-gray-100 bg-white p-8 shadow-md">
-        <div className="mb-6 flex items-center justify-between border-b pb-4">
-          <h1 className="text-2xl font-bold text-gray-900">
-            Student Registration
-          </h1>
-          <Link href="/" className="text-sm text-blue-600 hover:underline">
-            Back to Directory
-          </Link>
+    <main className="min-h-screen bg-gradient-to-br from-rose-50 via-[#fff8f7] to-orange-50 px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-2xl overflow-hidden rounded-3xl border border-pink-100 bg-white shadow-lg shadow-rose-100/60">
+        <div className="border-b border-pink-100 bg-gradient-to-r from-pink-100 via-rose-50 to-orange-100 px-6 py-6 sm:px-8">
+          <p className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-rose-700">
+            Join our campus community
+          </p>
+          <div className="flex items-center justify-between gap-4">
+            <h1 className="text-2xl font-extrabold tracking-tight text-rose-950">
+              Student Registration
+            </h1>
+            <Link href="/" className="text-sm font-medium text-rose-700 hover:text-pink-900 hover:underline">
+              Back to Directory
+            </Link>
+          </div>
         </div>
 
-        <form action={formAction} className="space-y-4">
+        <form action={formAction} className="space-y-4 p-6 sm:p-8">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label
@@ -106,7 +111,7 @@ export default function RegisterPage() {
                 name="firstName"
                 autoComplete="given-name"
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border border-pink-200 p-2 shadow-sm outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
               />
             </div>
             <div>
@@ -121,7 +126,7 @@ export default function RegisterPage() {
                 name="lastName"
                 autoComplete="family-name"
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border border-pink-200 p-2 shadow-sm outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
               />
             </div>
           </div>
@@ -140,7 +145,7 @@ export default function RegisterPage() {
                 name="email"
                 autoComplete="email"
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border border-pink-200 p-2 shadow-sm outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
               />
             </div>
             <div>
@@ -155,7 +160,7 @@ export default function RegisterPage() {
                 type="tel"
                 name="phone"
                 autoComplete="tel"
-                className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border border-pink-200 p-2 shadow-sm outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
               />
             </div>
           </div>
@@ -172,7 +177,7 @@ export default function RegisterPage() {
               name="streetAddress"
               autoComplete="street-address"
               required
-              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border border-pink-200 p-2 shadow-sm outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
             />
           </div>
 
@@ -191,7 +196,7 @@ export default function RegisterPage() {
                 required
                 value={city}
                 onChange={(event) => setCity(event.target.value)}
-                className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border border-pink-200 p-2 shadow-sm outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
               />
             </div>
             <div>
@@ -206,7 +211,7 @@ export default function RegisterPage() {
                 name="province"
                 autoComplete="address-level1"
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border border-pink-200 p-2 shadow-sm outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
               />
             </div>
             <div>
@@ -221,18 +226,18 @@ export default function RegisterPage() {
                 name="postalCode"
                 autoComplete="postal-code"
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border border-pink-200 p-2 shadow-sm outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
               />
             </div>
           </div>
 
           <div
             aria-live="polite"
-            className="min-h-5 text-sm text-blue-800"
+            className="min-h-5 text-sm text-rose-800"
           >
             {loadingWeather && <p>Loading weather...</p>}
             {weather && (
-              <p className="rounded-lg border border-blue-100 bg-blue-50 p-3">
+              <p className="rounded-lg border border-pink-100 bg-pink-50 p-3">
                 Current weather in {weather.name}:{" "}
                 <strong>{Math.round(weather.main.temp)}°C</strong>,{" "}
                 {weather.weather[0].description}
@@ -257,7 +262,7 @@ export default function RegisterPage() {
                 autoComplete="country-name"
                 defaultValue="Canada"
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border border-pink-200 p-2 shadow-sm outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
               />
             </div>
             <div>
@@ -271,7 +276,7 @@ export default function RegisterPage() {
                 id="program"
                 name="program"
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border border-pink-200 p-2 shadow-sm outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
               />
             </div>
             <div>
@@ -286,7 +291,7 @@ export default function RegisterPage() {
                 name="year"
                 placeholder="e.g. Y1"
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border border-pink-200 p-2 shadow-sm outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
               />
             </div>
           </div>
@@ -300,7 +305,7 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={isPending}
-            className="mt-6 w-full rounded-lg bg-blue-600 px-4 py-2.5 font-medium text-white shadow transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-6 w-full rounded-xl bg-pink-600 px-4 py-3 font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-pink-700 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isPending ? "Registering..." : "Register Student"}
           </button>

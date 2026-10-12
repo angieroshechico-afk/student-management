@@ -40,6 +40,31 @@ export async function registerStudent(_previousState, formData) {
     return { error: "Please complete all required fields." };
   }
 
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(student.email)) {
+    return { error: "Enter a valid email address." };
+  }
+
+  const postalCode = student.postal_code.trim();
+  const country = student.country.toLowerCase();
+  const isCanadianPostalCode =
+    /^[A-Z]\d[A-Z][ -]?\d[A-Z]\d$/i.test(postalCode);
+  const isUsPostalCode = /^\d{5}(?:-\d{4})?$/.test(postalCode);
+
+  if (
+    ((country === "canada" || country === "ca") && !isCanadianPostalCode) ||
+    ((country === "united states" ||
+      country === "united states of america" ||
+      country === "usa" ||
+      country === "us") &&
+      !isUsPostalCode) ||
+    (!["canada", "ca", "united states", "united states of america", "usa", "us"].includes(
+      country,
+    ) &&
+      !/^[A-Z0-9][A-Z0-9 -]{1,10}$/i.test(postalCode))
+  ) {
+    return { error: "Enter a valid postal or ZIP code for the selected country." };
+  }
+
   let db;
   try {
     db = await getDbConnection();
