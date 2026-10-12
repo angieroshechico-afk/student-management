@@ -25,16 +25,6 @@ export default function RegisterPage() {
       return;
     }
 
-    const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
-    if (!apiKey || apiKey === "your-openweathermap-api-key") {
-      setWeather(null);
-      setWeatherMessage(
-        "Add your OpenWeather API key to .env.local to see local weather.",
-      );
-      setLoadingWeather(false);
-      return;
-    }
-
     const controller = new AbortController();
     const timeoutId = setTimeout(async () => {
       setLoadingWeather(true);
@@ -43,20 +33,32 @@ export default function RegisterPage() {
 
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cityName)}&units=metric&appid=${encodeURIComponent(apiKey)}`,
+          `/api/weather?city=${encodeURIComponent(cityName)}`,
           { signal: controller.signal },
         );
+        const data = await response.json();
 
         if (!response.ok) {
-          setWeatherMessage(
-            response.status === 404
-              ? "Weather is not available for that city."
-              : "Unable to load weather right now.",
-          );
+          if (data.error === "WEATHER_API_KEY_MISSING") {
+            setWeatherMessage(
+              "Add OPENWEATHER_API_KEY to .env.local to see local weather.",
+            );
+          } else if (data.error === "WEATHER_API_KEY_INVALID") {
+            setWeatherMessage(
+              "OpenWeather rejected the API key. Check that the replacement key is correct and active in .env.local.",
+            );
+          } else if (data.error === "WEATHER_CITY_NOT_FOUND") {
+            setWeatherMessage("Weather is not available for that city.");
+          } else if (data.error === "WEATHER_RATE_LIMITED") {
+            setWeatherMessage(
+              "The OpenWeather request limit has been reached. Try again later.",
+            );
+          } else {
+            setWeatherMessage("OpenWeather could not complete the request.");
+          }
           return;
         }
 
-        const data = await response.json();
         if (data.main && data.weather?.[0]) {
           setWeather(data);
         } else {

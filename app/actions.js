@@ -1,7 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { getDbConnection } from "@/lib/db";
+import { getDbConnection, queryWithTimeout } from "@/lib/db";
 
 function getField(formData, name) {
   const value = formData.get(name);
@@ -68,7 +68,8 @@ export async function registerStudent(_previousState, formData) {
   let db;
   try {
     db = await getDbConnection();
-    await db.execute(
+    await queryWithTimeout(
+      db,
       `INSERT INTO students
         (first_name, last_name, email, phone, street_address, city, province_state, country, postal_code, program, year)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,

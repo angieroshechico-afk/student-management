@@ -1,6 +1,6 @@
 import Link from "next/link";
 import StudentCard from "@/components/StudentCard";
-import { getDbConnection } from "@/lib/db";
+import { getDbConnection, queryWithTimeout } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +11,8 @@ export default async function Home() {
   try {
     const db = await getDbConnection();
     try {
-      const [rows] = await db.execute(
+      const [rows] = await queryWithTimeout(
+        db,
         "SELECT * FROM students ORDER BY created_at DESC",
       );
       students = rows;
